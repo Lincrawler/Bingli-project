@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  button {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg font-medium select-none
+      transition-all duration-200 shadow-sm hover:shadow-md
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1
+      hover:brightness-105 active:brightness-95 active:scale-95
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+}
+
+/* Chat waiting bubble — three-dot animation */
+@keyframes chatDotsFade {
+  0% { opacity: 0.25; transform: translateY(0); }
+  20% { opacity: 1; transform: translateY(-2px); }
+  40% { opacity: 0.25; transform: translateY(0); }
+  100% { opacity: 0.25; transform: translateY(0); }
+}
+.waiting-bubble {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.chat-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chat-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #9CA3AF; /* gray-400 */
+  animation: chatDotsFade 1s infinite ease-in-out;
+}
+.chat-dots .dot:nth-child(2) { animation-delay: 0.2s; }
+.chat-dots .dot:nth-child(3) { animation-delay: 0.4s; }
